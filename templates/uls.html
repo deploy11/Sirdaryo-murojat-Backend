@@ -1,0 +1,167 @@
+{% extends "base_hp.html" %}
+{% block content %}
+<style>
+   .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: 20px;
+    }
+
+    .card {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        width: 250px;
+        margin: 15px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .card i {
+        font-size: 40px;
+        margin-bottom: 10px;
+        color: #2c3e50;
+    }
+
+    .card a {
+        display: block;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        text-decoration: none;
+    }
+
+    .card a:hover {
+        color: #007bff;
+    }
+
+</style>
+<!-- TO DO List -->
+<div class="box box-primary">
+    <div class="box-header">
+        <div class="box-tools pull-right"></div>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+    <div class="card-container">
+        <div class="card">
+            <i class="fa fa-gavel"></i>
+            <a href="{% url 'at1' %}?arizatur=Суд масалалари">Sud masalalari ({{ i1 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-shield"></i>
+            <a href="{% url 'at1' %}?arizatur=Ички ишлар фаолияти">ichki ishlar faoliyati ({{ i2 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-legal"></i>
+            <a href="{% url 'at1' %}?arizatur=Прокуратура фаолиятига oid">prokuratura faoliyati ({{ i3 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-child"></i>
+            <a href="{% url 'at1' %}?arizatur=Алимент масаласи">aliment masalasi ({{ i4 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-balance-scale"></i>
+            <a href="{% url 'at1' %}?arizatur=Суд ижросига oid">sud ijrosiga oid ({{ i5 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-heartbeat"></i>
+            <a href="{% url 'at1' %}?arizatur=Соғлиқни сақлаш">sog'liqni saqlash ({{ i6 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-money"></i>
+            <a href="{% url 'at1' %}?arizatur=Пенсия ва нафақа">pensiya va nafaqa ({{ i7 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-graduation-cap"></i>
+            <a href="{% url 'at1' %}?arizatur=Мактеб таълими">maktab ta'limi ({{ i8 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-home"></i>
+            <a href="{% url 'at1' %}?arizatur=Уй-жой, ер билан таъминлаш">uy-joy, yer bilan ta'minlash ({{ i9 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-briefcase"></i>
+            <a href="{% url 'at1' %}?arizatur=Иш билан таъминлаш">ish bilan ta'minlash ({{ i10 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-star"></i>
+            <a href="{% url 'at1' %}?arizatur=Афв этиш масаласи">afv etish masalasi ({{ i11 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-university"></i>
+            <a href="{% url 'at1' %}?arizatur=Олий таълим масалалари">oliy ta'lim masalalari ({{ i12 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-credit-card"></i>
+            <a href="{% url 'at1' %}?arizatur=Кредит олиш">kredit olish ({{ i13 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-bank"></i>
+            <a href="{% url 'at1' %}?arizatur=Банк-молия масалалари">bank-moliya masalalari ({{ i14 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-tint"></i>
+            <a href="{% url 'at1' %}?arizatur=Газ, электр, сув, иссиқлик таъминоти">gaz, elektr, suv, issiqlik ta'minoti ({{ i15 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-calculator"></i>
+            <a href="{% url 'at1' %}?arizatur=Коммунал тўловларни ҳисоблаш">kommunal to'lovlarni hisoblash ({{ i16 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-road"></i>
+            <a href="{% url 'at1' %}?arizatur=Йўл қурилиши">yo'l qurilishi ({{ i17 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-money"></i>
+            <a href="{% url 'at1' %}?arizatur=Солиқ тўловлари">soliq to'lovlari ({{ i18 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-car"></i>
+            <a href="{% url 'at1' %}?arizatur=Транспорт масалалари">transport masalalari ({{ i19 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-building"></i>
+            <a href="{% url 'at1' %}?arizatur=Қурилиш соҳаси">qurilish sohasi ({{ i20 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-legal"></i>
+            <a href="{% url 'at1' %}?arizatur=Тадбиркорлик ҳуқуқларини бузилиши">tadbirkorlik huquqlarini buzilishi ({{ i21 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-paint-brush"></i>
+            <a href="{% url 'at1' %}?arizatur=Санъат, маърифат ва маданият масалалари">san'at, ma'rifat va madaniyat masalalari ({{ i22 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-medkit"></i>
+            <a href="{% url 'at1' %}?arizatur=Дори-дормон нархи">dori-darmon narxi ({{ i23 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-cutlery"></i>
+            <a href="{% url 'at1' %}?arizatur=Бирламчи эҳтиёж мўллар нархи">birlamchi ehtiyoj mollar narxi ({{ i24 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-users"></i>
+            <a href="{% url 'at1' %}?arizatur=Давлат хизмати фаолияти">davlat xizmati faoliyati ({{ i25 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-handshake-o"></i>
+            <a href="{% url 'at1' %}?arizatur=Моддий ёрдам олиш">moddiy yordam olish ({{ i26 }})</a>
+        </div>
+        <div class="card">
+            <i class="fa fa-question-circle"></i>
+            <a href="{% url 'at1' %}?arizatur=Бошқа масалалар">boshqa masalalar ({{ i27 }})</a>
+        </div>
+    </div>
+</div>
+
+    </div><!-- /.box-body -->
+</div><!-- /.box -->
+{% endblock content %}

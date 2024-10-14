@@ -1,0 +1,349 @@
+{% extends "base_hp.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+        .box {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .box-header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .box-header h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .box-body {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            display: grid;
+            grid-template-columns: 1fr;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+
+        .form-group .input-group {
+            position: relative;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+        }
+
+        .form-group .input-group-addon {
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 8px 0 0 8px;
+            padding: 10px;
+            font-size: 16px;
+            color: #333;
+            width: 50px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            border: 1px solid #ddd;
+            border-radius: 0 8px 8px 0;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .form-group input {
+            height: 40px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            height: 150px;
+        }
+
+        .form-group img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .box-danger {
+            border: 1px solid #dc3545;
+        }
+
+        .box-danger .box-header {
+            background-color: #dc3545;
+        }
+
+        .box-danger .form-group .input-group-addon {
+            color: #dc3545;
+        }
+
+        /* Disable input styling */
+        .form-group input[readonly],
+        .form-group textarea[readonly] {
+            background-color: #f8f9fa;
+            cursor: not-allowed;
+            border-color: #ddd;
+        }
+
+        /* Responsive layout for larger screens */
+        @media (min-width: 768px) {
+            .form-group {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .form-group > div {
+                flex: 1 1 calc(50% - 10px); /* Two columns */
+            }
+        }
+
+        @media (min-width: 992px) {
+            .form-group {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .form-group > div {
+                flex: 1 1 calc(50% - 10px); /* Two columns */
+            }
+        }
+
+        /* Ensure the form groups are single column on phones */
+        @media (max-width: 767px) {
+            .form-group {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+        }
+         .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #f8f9fa;
+    }
+
+    .form-container .btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .form-container .btn:hover {
+        background-color: #0056b3;
+    }
+
+    .form-container .form-group {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .form-container .form-group label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .form-container .form-group input,
+    .form-container .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-sizing: border-box;
+    }
+
+    .form-container .form-group textarea {
+        resize: vertical;
+        height: 150px;
+    }
+
+    .form-container .form-group .input-group-addon {
+        background-color: #e9ecef;
+        border-radius: 8px 0 0 8px;
+        padding: 10px;
+        color: #495057;
+    }
+
+    @media (min-width: 768px) {
+        .form-container {
+            max-width: 800px;
+        }
+    }
+    </style>
+<div class="box box-primary">
+
+    <div class="box-body">
+        <div class="box box-green">
+            <div class="box-header">
+                {% if ariza.korish %}
+                    <h3 class="box-title">Tashkilotga Biriktirlgan</h3>
+                {% else %}
+                    <h3 class="box-title">Tashkilotga Biriktirish</h3>
+                {% endif %}
+            </div>
+            <div class="box-body">
+                {% if ariza.korish %}
+                    {% if hokimiyat_list %}
+                        <!-- Hokimiyatlar mavjud bo'lsa, ularni chiqarish -->
+                        <ul>
+                            {% for hokimiyat in hokimiyat_list %}
+                                <li>{{ hokimiyat.orinbosar }} - {{ hokimiyat.tashkilot }}</li>
+                            {% empty %}
+                                <li>Hokimiyat ma'lumotlari mavjud emas.</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>Hokimiyat ma'lumotlari mavjud emas.</p>
+                    {% endif %}
+                {% else %}
+                    <!-- Formni chiqarish -->
+                    <form method="post" style="display: flex; flex-direction: column; justify-content: space-evenly; align-items: center;">
+                        {% csrf_token %}
+                        {{ form | crispy }}
+                        <div>
+                            <button class="btn btn-default btn-flat" style="margin-top: 23px;" type="submit">Yuborish</button>
+                        </div>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <div class="box box-primary">
+        <div class="box-header">
+            <h3 class="box-title">Malumotlar</h3>
+        </div>
+        <div class="box-body">
+            <div class="box box-danger">
+                <div class="box-header">
+                    <h3 class="box-title">{{ ariza.fish }}</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group">
+                        <div>
+                            <label>Sana</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" value='{{ ariza.muddat }}' class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask readonly/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label>Telefon raqam:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+                                <input type="text" class="form-control" value='{{ ariza.telefonraqami }}' data-inputmask='"mask": "(999) 999-9999"' data-mask readonly/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label>ID Passpord:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-id-card"></i>
+                                </div>
+                                <input type="text" class="form-control" value='{{ ariza.idpassport }}' readonly/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label>Yashash Manzili:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-map-marker"></i>
+                                </div>
+                                <input type="text" value='{{ ariza.Yashashmanzili }}' class="form-control" readonly/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label>MFY Nomi:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-location-arrow"></i>
+                                </div>
+                                <input type="text" value='{{ ariza.mfynomi }}' class="form-control" readonly/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label>Ko`cha Nomi:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-map-signs"></i>
+                                </div>
+                                <input type="text" value='{{ ariza.kochanomi }}' class="form-control" readonly/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label>Rasm yoki Video:</label>
+                            <div class="input-group">
+                                <img src='{{ ariza.rasmvavidio }}' alt='rasm yo`q'>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label>Ariza Turi:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-list-ul"></i>
+                                </div>
+                                <input type="text" value='{{ ariza.ariza_mazmuni }}' class="form-control" readonly/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label>Ariza Matni:</label>
+                            <div class="input-group">
+                                <textarea name="" id="" cols="30" rows="10" readonly>{{ ariza.matn }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,470 @@
+{% extends "base_hp.html" %}
+{% block content %}
+<style>
+/* Breadcrumb style */
+.breadcrumb {
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: ">";
+    padding: 0 5px;
+    color: #007bff;
+}
+
+/* Small box styling */
+.small-box {
+    background: linear-gradient(145deg, #00c0ef, #009999);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.small-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.small-box .inner {
+    text-align: center;
+}
+
+.small-box h3 {
+    font-size: 28px; /* Title font size increased */
+    color: #fff;
+    margin: 0;
+    font-weight: bold; /* Bolder title to stand out */
+}
+
+.small-box p {
+    font-size: 18px; /* Larger description text */
+    color: #fff; /* Darker text color for better visibility */
+    margin-top: 10px;
+}
+
+.small-box .icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 60px; /* Increased icon size */
+    color: rgba(255, 255, 255, 0.2); /* Slightly darker icon color for better contrast */
+}
+
+/* Footer button style */
+.small-box-footer {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    font-size: 16px; /* Increased button text size */
+    font-weight: bold; /* Bolder button text */
+    color: #fff;
+    background: #28a745;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.small-box-footer:hover {
+    background: #218838;
+}
+
+
+</style>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'hp' %}">Uy</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Bajarilmagan Murojat filter</li>
+  </ol>
+</nav>
+<section class="content">
+<!-- Small boxes (Stat box) -->
+          <div class="row">
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br1 }}/{{ bar1 }}</h3>
+                  <p>sud  masalalari</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Суд масалалари' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br2 }}/{{ bar2 }}</h3>
+                  <p>ichki ishlar  faol.</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Ички ишлар фаолияти' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br3 }}/{{ bar3 }}</h3>
+                  <p>prokuratura faol. oid</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Прокуратура фаолияти' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br4 }}/{{ bar4 }}</h3>
+                  <p>aliment masalasi</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Алимент масаласи' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+
+          </div><!-- /.row -->
+          <!---->
+          <div class="row">
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br5 }}/{{ bar5 }}</h3>
+                  <p>sud  ijrosiga oid</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Суд ижроси' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br6 }}/{{ bar6 }}</h3>
+                  <p>sog‘liqni saqlash</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Соғлиқни сақлаш' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br7 }}/{{ bar7 }}</h3>
+                  <p>pensiya va nafaqa</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Пенсия ва нафақа' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br8 }}/{{ bar8 }}</h3>
+                  <p> maktab  ta’limi</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Мактаб таълими' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+
+          </div><!-- /.row -->
+          <!---->
+          <div class="row">
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br9 }}/{{ bar9 }}</h3>
+                  <p>uy-joy, er b-n ta’m.</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Ўй-жой, ер билан таъм' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br10 }}/{{ bar10 }}</h3>
+                  <p>ish b-n ta’minlash</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Иш билан таъминлаш' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br11 }}/{{ bar11 }}</h3>
+                  <p>afv etish masalasi</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Афв этиш масаласи' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br12 }}/{{ bar12 }}</h3>
+                  <p>oliy ta’lim masalalari</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Олий таълим масалалари' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+
+          </div><!-- /.row -->
+                    <!---->
+          <div class="row">
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br13 }}/{{ bar13 }}</h3>
+                  <p>kredit olish</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Кредит олиш' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br14 }}/{{ bar14 }}</h3>
+                  <p>bank-moliya  masalalari</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Банк-молия масалалари' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br15 }}/{{ bar15 }}</h3>
+                  <p>gaz, elektr, suv, issiqlik ta’minoti</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Газ, электр, сув, иссиқлик таъминоти' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br16 }}/{{ bar16 }}</h3>
+                  <p>kommunal to‘lovlarni hisoblash</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Коммунал тўловларни ҳисоблаш' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+
+          </div><!-- /.row -->
+                   <!---->
+          <div class="row">
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br17 }}/{{ bar17 }}</h3>
+                  <p>yo‘l qurilishi</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Йўл қурилиши' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br18 }}/{{ bar18 }}</h3>
+                  <p>soliq  to‘lovlari	 </p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Солиқ тўловлари' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br19 }}/{{ bar19 }}</h3>
+                  <p>transport masalalari</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Транспорт масалалари' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br20 }}/{{ bar20 }}</h3>
+                  <p>qurilish  sohasi</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Қурилиш соҳасидаги масалалар' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+
+          </div><!-- /.row -->
+                             <!---->
+          <div class="row">
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br21 }}/{{ bar21 }}</h3>
+                  <p>tadbirkorlik  huquklarini buzulishi</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Тадбиркорлик ҳуқуқларини бузилиши' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br22 }}/{{ bar22 }}</h3>
+                  <p>san’-at, ma’rifat va madaniyat masalalari</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Санʼат, маърифат ва маданият масалалари' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br23 }}/{{ bar23 }}</h3>
+                  <p>dori-darmonga narx-navo masalasi</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Дори-дармон нарх-наволари' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br24 }}/{{ bar24 }}</h3>
+                  <p>birinchi ehtiyoj mollariga narx-navo masalalari</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Биринчи эҳтиёж моллари нарх-наволари' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+
+          </div><!-- /.row -->
+                                       <!---->
+          <div class="row">
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br25 }}/{{ bar25 }}</h3>
+                  <p>davlat  xizmati faoliyati</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Давлат хизмати фаолияти' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br26 }}/{{ bar26 }}</h3>
+                  <p>moddiy  yordam  olish</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Моддий ёрдам олиш' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>{{ br27 }}/{{ bar27 }}</h3>
+                  <p>boshqa masalalar</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-file-text"></i>
+                </div>
+                <a href="{% url 'bj' at='Бошқа масалалар' %}" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+
+
+          </div><!-- /.row -->
+<section/>
+
+
+{% endblock content %}

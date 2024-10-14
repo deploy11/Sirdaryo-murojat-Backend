@@ -1,0 +1,45 @@
+{% extends "base_hp.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+              <form method="post" style="display: flex; flex-direction:column; justify-content: space-evenly; align-items: center;">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <div>
+                  <button class="btn btn-default btn-flat" style="margin-top: 23px;"
+                  type="submit">yuborish
+                </button>
+                </div>
+
+              </form>
+            <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Ism Familiya Sharif</th>
+                        <th scope="col">Yashash Manzili</th>
+                        <th scope="col">Ariza Turi</th>
+                        <th scope="col">Sana</th>
+                        <th scope="col">biriktirish</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for ariza in ariza %}
+
+                          <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td><a href='{% url 'sorovid' ariza.id %}'>{{ ariza.fish }}</a></td>
+                            <td>{{ ariza.Yashashmanzili }}</td>
+                            <td>{{ ariza.ariza_mazmuni }}</td>
+                            <th>{{ ariza.muddat }}</th>
+                            <th><a href='{% url 'del' ariza.id %}'>biriktirildi</a></th>
+                          </tr>
+                          {% empty %}
+                          <tr>
+                              <th scope="row">Tashkilotga Biriktirilmagan Murojatlar Yo`q</th>
+                          </tr>
+
+                    {% endfor %}
+                    </tbody>
+                  </table>
+{% endblock content %}

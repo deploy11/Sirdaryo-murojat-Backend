@@ -1,0 +1,94 @@
+{% extends "base_hp.html" %}
+{% block content %}
+  <!-- TO DO List -->
+  <div class="box box-primary">
+    <div class="box-header">
+      <i class="ion ion-clipboard"></i>
+      <h3 class="box-title">Muddati O`tkan Murojatlar</h3>
+      <div class="box-tools pull-right">
+            <button type="button" class="btn btn-success">soni {{ ac }}</button>
+      </div>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">tel ism</th>
+            <th scope="col">O`rinbosar</th>
+            <th scope="col">Tashkilot</th>
+          </tr>
+        </thead>
+        <tbody>
+              {% for ariza in ariza %}
+              <tr>
+                <td scope="row"><a href='{% url 'sorovid' ariza.tel_name.id %}'>{{ ariza.tel_name }}</a></td>
+                <td>{{ ariza.orinbosar }}</td>
+                <td>{{ ariza.tashkilot }}</td>
+              </tr>
+            {% empty %}
+                <tr>
+                  <td>Muddati O`tkan Murojatlar Yo`q</th>
+                  <th scope="row">{{ ariza.id }}</th>
+                  <td>{{ ariza.murajat }}</td>
+                  <td>{{ ariza.orinbosar }}</td>
+                  <td>{{ ariza.tashkilot }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    </div><!-- /.box-body -->
+
+  </div><!-- /.box -->
+  {% if request.user.username == "hokim" %}
+  {% else %}
+                  <style>
+                    @media only screen and (max-width: 500px) {
+                        .afes{
+                            overflow:scroll;
+                        }
+                    }
+                </style>
+  <!-- TO DO List -->
+  <div class="box box-primary">
+    <div class="box-header">
+      <i class="ion ion-clipboard"></i>
+      <h3 class="box-title">Muddat O`tkan Murojat belgilash</h3>
+      <div class="box-tools pull-right">
+
+      </div>
+    </div><!-- /.box-header -->
+    <div class="box-body afes">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Sana</th>
+            <th scope="col">O`rinbosar</th>
+            <th scope="col">Tashkilot</th>
+          </tr>
+        </thead>
+        <tbody>
+             {% for arizal in arizal %}
+              <tr>
+                <th scope="row">{{ arizal.id }}</th>
+                <td>{{ arizal.tel_name }}</td>
+                <td>{{ arizal.orinbosar }}</td>
+                <td>{{ arizal.tashkilot }}</td>
+                <td><a href='{% url "mudot" arizal.id %}'>mudaat o`tdi</a></td>
+              </tr>
+            {% empty %}
+                <tr>
+                  <td>Muddati O`tkan Murojatlar Yo`q</th>
+                  <th scope="row">{{ arizal.id }}</th>
+                  <td>{{ arizal.murajat }}</td>
+                  <td>{{ arizal.orinbosar }}</td>
+                  <td>{{ arizal.tashkilot }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    </div><!-- /.box-body -->
+
+  </div><!-- /.box -->
+  {% endif %}
+{% endblock content %}

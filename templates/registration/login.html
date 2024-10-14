@@ -1,0 +1,209 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Sahifasi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, rgba(0, 164, 224, 0.8), rgba(255, 255, 255, 0.8)), url('{%static "sirdaryo.jpg" %}') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            color: #333;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 30px; 
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px; 
+            transition: transform 0.5s, opacity 0.5s;
+            opacity: 0; 
+            transform: translateY(-50px); 
+            animation: slideIn 0.5s forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px; 
+            color: #0072ff;
+        }
+
+        p {
+            text-align: center;
+            margin-bottom: 20px; 
+            color: #666;
+        }
+
+        .input-group {
+            margin-bottom: 20px; 
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px; 
+            color: #444;
+            font-weight: 500;
+        }
+
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            border: 2px solid #0072ff; 
+            border-radius: 5px; 
+            overflow: hidden;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .input-wrapper:focus-within {
+            border-color: #0056b3; 
+            transform: scale(1.02);
+        }
+
+        .input-wrapper:hover {
+            border-color: #0056b3; 
+            transform: scale(1.02);
+        }
+
+        .icon {
+            padding: 12px; 
+            background: #0072ff;
+            color: white;
+            font-size: 1.2rem; 
+            transition: 0.7s;
+        }
+
+        .input-wrapper:hover .icon {
+            background: #0056b3; 
+            border-radius: 30px;
+            transform: rotate(6deg);
+        }
+
+        input {
+            flex: 1;
+            border: none;
+            padding: 10px; 
+            outline: none;
+            font-size: 14px; 
+            transition: background-color 0.3s;
+        }
+
+        input:focus {
+            background-color: #e0f7fa; 
+        }
+
+        .toggle-password {
+            cursor: pointer;
+            padding: 10px; 
+            color: #0072ff;
+            border: none; 
+            font-size: 1.2rem; 
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px; 
+            background: #0072ff;
+            color: white;
+            border: none;
+            border-radius: 10px; 
+            cursor: pointer;
+            font-size: 16px; 
+            transition: background 0.3s, transform 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 114, 255, 0.3);
+        }
+
+        .btn-login:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 15px; 
+        }
+
+        .forgot-password a {
+            color: #0072ff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .forgot-password a:hover {
+            color: #0056b3;
+        }
+
+        @media (max-width: 400px) {
+            .icon, .toggle-password {
+                padding: 8px; 
+            }
+
+            input {
+                padding: 8px; 
+                font-size: 14px; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Tizimga Kirish</h2>
+        <p>Iltimos, tizimga kirish ma'lumotlaringizni kiriting</p>
+        <form method="post">
+            {% csrf_token %}
+            <p>{{ mes }}</p>
+            <div class="input-group">
+                <label for="username">Foydalanuvchi nomi</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-user icon"></i>
+                    <input type="text" id="username" name="username" placeholder="Foydalanuvchi nomini kiriting" required>
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="password">Parol</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-lock icon"></i>
+                    <input type="password" id="password" name="pass" placeholder="Parolni kiriting" required>
+                    <i class="fas fa-eye toggle-password" id="togglePassword"></i>
+                </div>
+            </div>
+            <button type="submit" class="btn-login">Kirish</button>
+            <div class="forgot-password">
+                <a href="#">Parolni unutdingizmi?</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
+</body>
+</html>

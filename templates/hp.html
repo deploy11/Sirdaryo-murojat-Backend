@@ -1,0 +1,307 @@
+{% extends "base_hp.html" %}
+{% block content %}
+        <section class="content">
+            <!-- Stat boxes -->
+            <div class="row">
+                <!-- Barcha Murojatlar -->
+                <div class="col-lg-3 col-xs-6">
+                    <div class="small-box bg-aqua">
+                        <div class="inner">
+                            <h3>{{ hammasi }}</h3>
+                            <p>Barcha Murojatlar</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-file-text"></i>
+                        </div>
+                        <a href="{% url 'barchasi' %}" class="small-box-footer">
+                            <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Bajarilgan Murojatlar -->
+                <div class="col-lg-3 col-xs-6">
+                    <div class="small-box bg-green">
+                        <div class="inner">
+                            <h3>{{ bajargan }}</h3>
+                            <p>Bajarilgan Murojatlar</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-check-circle"></i>
+                        </div>
+                        <a href="{% url 'br' %}" class="small-box-footer">
+                            <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Muddati O`tkan Murojatlar -->
+                <div class="col-lg-3 col-xs-6">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <h3>{{ muddati_otkan }}</h3>
+                            <p>
+                                {% if request.user.username == 'hokimiyat' %}
+                                    Muddati O`tkan Murojatlarni Tekshirish
+                                {% else %}
+                                    Muddati O`tkan Murojatlar
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-clock-o"></i>
+                        </div>
+                        <a href="{% url 'md' %}" class="small-box-footer">
+                            <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Bajarilmagan Murojatlar -->
+                <div class="col-lg-3 col-xs-6">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <h3>{{ bajarilmagan }}</h3>
+                            <p>Bajarilmagan Murojatlar</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-ban"></i>
+                        </div>
+                        <a href="{% url 'bjr' %}" class="small-box-footer">
+                            <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+         {% if request.user.type == 'hokim' %}
+<section class="content">
+  <!-- Small boxes (Stat box) -->
+  <div class="row">
+
+    <!-- Tashkilotga biriktirilmagan Murojatlar -->
+    <div class="col-lg-4 col-xs-12">
+      <div class="small-box bg-red">
+        <div class="inner">
+          <h3>{{ ac }}</h3>
+          <p>Tashkilotga Biriktirilmagan Murojatlar</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-ban"></i>
+        </div>
+        <a href="{% url 'tno' %}" class="small-box-footer d-flex align-items-center justify-content-center">
+          Batafsil <i class="fa fa-arrow-circle-right ms-2"></i>
+        </a>
+      </div>
+    </div><!-- ./col -->
+
+    <!-- Tashkilotga biriktirilgan Murojatlar -->
+    <div class="col-lg-4 col-xs-12">
+      <div class="small-box bg-green">
+        <div class="inner">
+          <h3>{{ af }}</h3>
+          <p>Tashkilotga Biriktirilgan Murojatlar</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-check-circle"></i>
+        </div>
+        <a href="{% url 'tbir' %}" class="small-box-footer d-flex align-items-center justify-content-center">
+          Batafsil <i class="fa fa-arrow-circle-right ms-2"></i>
+        </a>
+      </div>
+    </div><!-- ./col -->
+
+  </div><!-- /.row -->
+
+
+
+          <style>
+            .lerow div{
+                width: 1000px;
+                float: left;
+            }
+              @media only screen and (max-width: 500px) {
+                  .lerow{
+                      flex-direction: column;
+                  }
+                  .lerow div{
+                      width: 317px;
+                      float:none;
+                  }
+              }
+          </style>
+          <div class="lerow" style="display:flex ;">
+            <div>
+              <canvas id="myChart"></canvas>
+            </div>
+            <div>
+              <canvas id="myChart2"></canvas>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+          <script>
+            const ctx = document.getElementById('myChart');
+            const ctx2 = document.getElementById('myChart2');
+            new Chart(ctx, {
+              type: 'line',
+
+              data: {
+                labels: ['barcha So`rovlar', 'bajarilgan So`rovlar', 'bajarilmagan So`rovlar', 'Muddati o`tkan So`rovlar',],
+                datasets: [{
+                  label: 'chiziqli Diagramma',
+                  data: [{{ hammasi }},{{ bajargan }},{{ bajarilmagan }},{{ muddati_otkan }}],
+                  borderWidth: 0.7,
+                  backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(201, 203, 207, 0.2)'
+                    ],
+                  borderColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(255, 159, 64)',
+                        'rgb(255, 205, 86)',
+                        'rgb(75, 192, 192)',
+                        'rgb(54, 162, 235)',
+                        'rgb(153, 102, 255)',
+                        'rgb(201, 203, 207)'
+                    ],
+                }]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+            new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: ['barcha So`rovlar', 'bajarilgan So`rovlar', 'bajarilmagan So`rovlar', 'muddati o`tkan So`rovlar',],
+                    datasets: [{
+                        label: 'barli diagramma',
+                        data: [{{ hammasi }},{{ bajargan }},{{ bajarilmagan }},{{ muddati_otkan }}],
+                        borderWidth: 1
+
+                    }]
+
+
+            },
+                options: {
+                scales: {
+                    y: {
+                    beginAtZero: true
+                }
+            }
+            }
+            });
+          </script>
+          </div>
+
+
+
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+          {% endif %}
+          {% if request.user.username == 'hokim' %}
+           <h1></h1>
+          {% else %}
+                <style>
+                    @media only screen and (max-width: 500px) {
+                        .afes{
+                            overflow:scroll;
+                        }
+                    }
+                </style>
+              <!-- TO DO List -->
+            <div class="box box-primary">
+                <div class="box-header">
+                    <i class="ion ion-clipboard"></i>
+                    <h3 class="box-title">Keyib Tushgan Murojatar</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-success">Soni: {{ ac }}</button>
+                    </div>
+                </div><!-- /.box-header -->
+                <div class="box-body afes">
+                    <table class="table table-sm table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Ism Familiya Sharif</th>
+                                <th scope="col">Yashash Manzili</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in grouped_arizalar %}
+                                <tr>
+                                    <th scope="row">{{ forloop.counter }}</th>
+                                    <td>
+                                        <a href="{% url 'userariza' item.ariza.fish %}">
+                                            {{ item.ariza.fish }}
+                                            <span class="badge badge-pill badge-primary">{{ item.submission_count }}</span> <!-- Styled span for submission count -->
+                                        </a>
+                                    </td>
+                                    <td>{{ item.ariza.Yashashmanzili }}</td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <th scope="row" colspan="5">Tashkilotga Biriktirilmagan Murojatlar Yo'q</th>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+
+
+
+
+
+
+
+            </section><!-- right col -->
+          </div><!-- /.row (main row) -->
+
+        </section><!-- /.content -->
+        {% endif %}
+        <script>
+          // <![CDATA[  <-- For SVG support
+          if ('WebSocket' in window) {
+            (function () {
+              function refreshCSS() {
+                var sheets = [].slice.call(document.getElementsByTagName("link"));
+                var head = document.getElementsByTagName("head")[0];
+                for (var i = 0; i < sheets.length; ++i) {
+                  var elem = sheets[i];
+                  var parent = elem.parentElement || head;
+                  parent.removeChild(elem);
+                  var rel = elem.rel;
+                  if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+                    var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+                    elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+                  }
+                  parent.appendChild(elem);
+                }
+              }
+              var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+              var address = protocol + window.location.host + window.location.pathname + '/ws';
+              var socket = new WebSocket(address);
+              socket.onmessage = function (msg) {
+                if (msg.data == 'reload') window.location.reload();
+                else if (msg.data == 'refreshcss') refreshCSS();
+              };
+              if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+                console.log('Live reload enabled.');
+                sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+              }
+            })();
+          }
+          else {
+            console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+          }
+          // ]]>
+        </script>
+{% endblock content %}
